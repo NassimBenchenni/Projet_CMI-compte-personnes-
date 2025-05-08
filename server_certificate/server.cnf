@@ -1,0 +1,20 @@
+[ req ]
+default_bits       = 2048
+prompt             = no
+default_md         = sha256
+distinguished_name = dn
+req_extensions     = req_ext
+
+[ dn ]
+C  = FR
+ST = France
+L  = Draguignan
+O  = DG-IOT
+CN = backend.comp.dgcentral.fr
+
+[ req_ext ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = backend.comp.dgcentral.fr
+IP.1 = 192.168.1.31
