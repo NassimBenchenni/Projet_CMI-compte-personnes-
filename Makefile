@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = --std=c++26 -Wall -Wextra
+CFLAGS = --std=c++20 -Wall -Wextra
 LIBFLAGS = -lssl -lcrypto -lsqlite3 -lpthread
 
 

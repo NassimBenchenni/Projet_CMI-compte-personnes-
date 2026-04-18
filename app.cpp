@@ -10,7 +10,7 @@
 
 
 #define PORT 8080
-#define SERVER_IP "192.168.110.1"
+#define SERVER_IP "0.0.0.0"
 
 
 bool updatePeopleCount(const std::string& db_name, int room_id, int new_count) {
