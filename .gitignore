@@ -1,0 +1,19 @@
+# Fichiers compilés C++
+prog
+*.o
+
+# Cache Python
+__pycache__/
+*.pyc
+
+# Base de données (on ne garde que le .sql)
+*.db
+*.sqlite
+
+# Certificats et clés privées (SÉCURITÉ)
+server_certificate/
+*.key
+*.pem
+*.crt
+*.csr
+*.srl
