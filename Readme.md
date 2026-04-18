@@ -17,6 +17,7 @@ Travail de Groupe à 3, réalisé par : Nassim Benchenni, Nicolas Di Grande, Fou
 3. INSTALLATION (LINUX / WSL)
 - Python et Flask : sudo apt install python3-flask
 - Dépendances C++ : sudo apt install g++ libssl-dev libsqlite3-dev
+- Génération des certificats de test : Génération des certificats de tes
 
 4. UTILISATION
 Etape 1 : Configuration Matérielle
