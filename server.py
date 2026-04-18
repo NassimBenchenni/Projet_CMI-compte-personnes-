@@ -1,8 +1,27 @@
 from flask import Flask, jsonify, render_template, send_from_directory, request
 import sqlite3
-from update import add_one, minus_one  # Importation de vos fonctions
+from update import add_one, minus_one
 
 app = Flask(__name__)
+
+def init_db():
+    conn = sqlite3.connect("salle.db")
+    cursor = conn.cursor()
+    # Crée la table si elle n'existe pas
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS salle (
+            id INTEGER PRIMARY KEY,
+            id_num INTEGER,
+            nombre_personnes INTEGER DEFAULT 0
+        )
+    """)
+    # Optionnel : Insérer une salle par défaut si la table est vide
+    cursor.execute("SELECT count(*) FROM salle")
+    if cursor.fetchone()[0] == 0:
+        cursor.execute("INSERT INTO salle (id_num, nombre_personnes) VALUES (1, 0)")
+    
+    conn.commit()
+    conn.close()
 
 # Fonction pour récupérer toutes les salles
 def get_salles():
@@ -56,4 +75,5 @@ def favicon():
     return send_from_directory('.', 'server.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
+    init_db()
     app.run(host="0.0.0.0", port=5000, debug=True)

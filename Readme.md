@@ -8,38 +8,33 @@ Travail de Groupe à 3, réalisé par : Nassim Benchenni, Nicolas Di Grande, Fou
 
 2. STRUCTURE DES FICHIERS
 - server.py : Serveur web principal (Flask) gérant l'affichage et l'API.
-- update.py : Scripts Python pour modifier la base de données salle.db.
+- update.py : Fonctions Python pour modifier la base de données salle.db.
 - app.cpp : Serveur de réception sécurisé (SSL/TLS) écrit en C++.
 - Makefile : Fichier de compilation pour le programme C++.
-- salle.db : Base de données SQLite stockant le nombre de personnes.
-- index.html : Interface utilisateur web.
-- static/ : Contient les styles CSS et les scripts JS pour le web.
-- Arduino/arduino.ino : Code pour la carte Arduino et les capteurs.
-- server_certificate/ : Certificats SSL requis pour la connexion sécurisée.
+- salle.sql : Schéma de création de la base de données (si création manuelle).
+- Arduino/arduino.ino : Code pour la carte Arduino (Pins 2 et 3).
 
-3. INSTALLATION (SUR LINUX / WSL)
-- Installer Flask (Python) : sudo apt install python3-flask
-- Installer les dépendances C++ : sudo apt install g++ libssl-dev libsqlite3-dev
+3. INSTALLATION (LINUX / WSL)
+- Python et Flask : sudo apt install python3-flask
+- Dépendances C++ : sudo apt install g++ libssl-dev libsqlite3-dev
 
-4. UTILISATION ÉTAPE PAR ÉTAPE
+4. UTILISATION
+Etape 1 : Configuration Matérielle
+1. Reliez le Capteur 1 à la Pin 2 et le Capteur 2 à la Pin 3 de l'Arduino.
+2. Branchez l'écran LCD sur les ports I2C.
+3. Televersez le code via l'IDE Arduino.
 
-Étape 1 : Branchements Matériels (Arduino)
-1. Prenez vos deux capteurs de passage (ex: infrarouge ou laser).
-2. Branchez le fil de signal du Capteur 1 sur la broche numérique 2 (Pin 2) de l'Arduino.
-3. Branchez le fil de signal du Capteur 2 sur la broche numérique 3 (Pin 3) de l'Arduino.
-4. (N'oubliez pas de relier le 5V et le GND des capteurs à l'Arduino).
-5. Branchez l'écran LCD RGB sur le port I2C (broches SDA et SCL).
-6. Connectez la carte Arduino à votre ordinateur via un câble USB.
-7. Ouvrez Arduino/arduino.ino dans l'IDE Arduino et téléversez le code.
+Etape 2 : Lancement du Dashboard Web
+Dans un terminal : python3 server.py
+La base de données 'salle.db' est créée automatiquement au premier lancement.
+L'interface est accessible sur http://localhost:5000.
 
-Étape 2 : Lancer le Dashboard Web
-Dans un terminal, tapez : python3 server.py
-L'interface sera accessible sur http://localhost:5000
-
-Étape 3 : Lancer le Serveur de Réception C++
+Etape 3 : Lancement du Serveur C++
 Dans un second terminal :
-1. Tapez 'make' pour compiler le projet (si ce n'est pas déjà fait).
-2. Tapez './prog' pour lancer le serveur sécurisé. Il se mettra en atte
-5. NOTES TECHNIQUES & RÉSEAU
-- Pour que l'Arduino puisse envoyer ses données, il devra cibler l'adresse IP locale (IPv4) de l'ordinateur hébergeant le serveur C++ sur le port 8080.
-- Les communications entre le matériel et le serveur sont sécurisées par TLS.
+1. Tapez 'make' pour compiler.
+2. Tapez './prog' pour lancer la réception des données.
+
+5. SECURITE ET RESEAU
+- Le dossier 'server_certificate/' est exclu du depot public pour des raisons de securite (contient les cles privees). 
+- Pour une utilisation en production ou en public, vous devez generer vos propres certificats SSL et les placer dans ce dossier.
+- Le serveur C++ ecoute par defaut sur 0.0.0.0:8080.
