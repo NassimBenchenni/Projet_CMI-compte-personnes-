@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comptage des Personnes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/styles.css">
+  <link rel="icon" type="image/x-icon" href="static/server.ico">
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>Comptage des Personnes</h1>
+    <p>Suivez en temps réel le nombre de personnes dans chaque salle</p>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Rechercher une salle..." aria-label="Rechercher une salle" oninput="searchRoom()">
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <main id="sallesContainer" aria-live="polite">
+    <div class="w3-center">
+      <p id="chargement" class="w3-text-grey">Chargement des données...</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Projet réalisé par Nassim Benchenni, Nicolas Di Grande, Fouad Sbaghi</p>
+  </footer>
+
+  <script src="static/script.js"></script>
+</body>
+</html>
